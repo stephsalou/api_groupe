@@ -37,10 +37,17 @@ def getimage()
 
 
 def basic_seeder():
+    from django.core.files import File
     seeder = Seed.seeder()
-    seeder.add_entity(Categorie, 10)
+    seeder.add_entity(Categorie, 10,{
+        'image': File(getimage())
+    })
     seeder.add_entity(User, 10)
-    seeder.add_entity(SousCategorie, 30)
-    seeder.add_entity(Article, 50)
+    seeder.add_entity(SousCategorie, 30,{
+        'image': File(getimage())
+    })
+    seeder.add_entity(Article, 50,{
+        'image': File(getimage())
+    })
     seeder.add_entity(Commentaire, 100)
     inserted_pks = seeder.execute()

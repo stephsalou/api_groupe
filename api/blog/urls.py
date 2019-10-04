@@ -1,5 +1,6 @@
 from django.urls import path,include
+from .views import basic_seeder
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('basicfake/', basic_seeder),
 ]
