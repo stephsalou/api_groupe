@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'blog',
     'django_seed',
+    'django_admin_generator',
 ]
 
 MIDDLEWARE = [
