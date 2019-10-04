@@ -7,6 +7,7 @@ from .models import Poll, Choice ,Vote
 from .serializers import PollSerializer, ChoiceSerializer, VoteSerializer
 from rest_framework import filters
 from rest_framework import viewsets
+from .models import *
 
 # Create your views here.
 
@@ -26,8 +27,6 @@ class PollViewSet(viewsets.ModelViewSet):
 
 ###  Seeder
 
-seeder = Seed.seeder()
-
 Images = [os.path.join(settings.BASE_DIR,'static/images/breakfast-'+str(i)+'.jpg') for i in range(1,5)]+ [os.path.join(settings.BASE_DIR,'static/images/lunch-'+str(i)+'.jpg') for i in range(1,5)] + [os.path.join(settings.BASE_DIR,'static/images/dinner-'+str(i)+'.jpg') for i in range(1,5)] + [os.path.join(settings.BASE_DIR,'static/images/dessert-'+str(i)+'.jpg') for i in range(1,5)] + [os.path.join(settings.BASE_DIR,'static/images/drink-'+str(i)+'.jpg') for i in range(1,6)]
 
 def getimage()
@@ -37,3 +36,11 @@ def getimage()
     return img
 
 
+def basic_seeder():
+    seeder = Seed.seeder()
+    seeder.add_entity(Categorie, 10)
+    seeder.add_entity(User, 10)
+    seeder.add_entity(SousCategorie, 30)
+    seeder.add_entity(Article, 50)
+    seeder.add_entity(Commentaire, 100)
+    inserted_pks = seeder.execute()
